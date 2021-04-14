@@ -15,6 +15,8 @@ namespace VH.DataService
 {
     public class Startup
     {
+        private string _currencyApiKey = null;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,6 +36,7 @@ namespace VH.DataService
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
 
             app.UseHttpsRedirection();
