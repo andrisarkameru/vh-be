@@ -1,0 +1,52 @@
+﻿{
+   "CodeGenerationMode": 1,
+   "ContextClassName": "VHDbmodelContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "EFCore",
+   "ProceduresReturnList": false,
+   "ProjectRootNamespace": "VH.Data",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[Customer]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Location]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Order]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Payment]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[RentableItem]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "(localdb)\\MSSQLLocalDB.C:\\USERS\\ANDRI\\SOURCE\\REPOS\\VACATIONHIRE\\VH.DATA\\MDF\\VH-DB.MDF",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseNoConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSpatial": false
+}

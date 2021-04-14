@@ -7,3 +7,5 @@ bin
 obj
 /.vs/VacationHire/DesignTimeBuild/.dtbcache
 /.vs/VacationHire
+/VH.DBModel/VH.DBModel.jfm
+/VH.DBModel/VH.DBModel.dbmdl
