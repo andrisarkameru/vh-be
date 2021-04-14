@@ -33,7 +33,7 @@ namespace VH.Tests.Currency
 
             var mockHttp = CreateMockHttp(currencyResponse);
 
-            service = new CurrencyService(mockHttp, serviceBaseUrl, serviceApiKeyMock);
+            service = new CurrencyService(mockHttp, serviceApiKeyMock);
 
             var eurUsdResult = await service.Convert(10, "EUR", "USD");
             eurUsdResult.Should().Be(ammount * rateEurUSD);
@@ -48,7 +48,7 @@ namespace VH.Tests.Currency
 
             var mockHttp = CreateMockHttp(currencyResponse);
 
-            service = new CurrencyService(mockHttp, serviceBaseUrl, serviceApiKeyMock);
+            service = new CurrencyService(mockHttp, serviceApiKeyMock);
 
             var eurUsdResult = await service.Convert(10, "USD", "EUR");
             eurUsdResult.Should().Be(ammount / rateEurUSD);
@@ -63,7 +63,7 @@ namespace VH.Tests.Currency
 
             var mockHttp = CreateMockHttp(currencyResponse);
 
-            service = new CurrencyService(mockHttp, serviceBaseUrl, serviceApiKeyMock);
+            service = new CurrencyService(mockHttp, serviceApiKeyMock);
 
             Func<Task> act = async () => { await service.Convert(10, "USD", "Z5"); };
             act.Should().Throw<Exception>();
@@ -87,7 +87,7 @@ namespace VH.Tests.Currency
                 ItExpr.IsAny<CancellationToken>())
                 .ReturnsAsync(httpResponse);
 
-            HttpClient httpClient = new HttpClient(mockHandler.Object);
+            HttpClient httpClient = new HttpClient(mockHandler.Object) {BaseAddress = new Uri(serviceBaseUrl) };
             return httpClient;
         }
     }

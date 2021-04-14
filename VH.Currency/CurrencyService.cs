@@ -5,16 +5,14 @@ using System.Threading.Tasks;
 
 namespace VH.Currency
 {
-    public class CurrencyService
+    public class CurrencyService : ICurrencyService
     {
         private readonly HttpClient _http;
-        private readonly string _baseUrl;
         private readonly string _accessKey;
 
-        public CurrencyService(HttpClient http, string baseUrl, string accessKey)
+        public CurrencyService(HttpClient http, string accessKey)
         {
             _http = http ?? throw new ArgumentNullException(nameof(http));
-            _baseUrl = baseUrl ?? throw new ArgumentNullException(nameof(baseUrl));
             _accessKey = accessKey ?? throw new ArgumentNullException(nameof(accessKey));
         }
 
@@ -28,7 +26,7 @@ namespace VH.Currency
 
         public async Task<decimal> GetRate(string from, string to)
         {
-            var url = $"{_baseUrl}/live?access_key={_accessKey}& currencies={from},{to}";
+            var url = $"live?access_key={_accessKey}& currencies={from},{to}";
             var response = await _http.GetAsync(url);
             response.EnsureSuccessStatusCode();
             var jsonResult = await response.Content.ReadAsStringAsync();
