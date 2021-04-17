@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,50 +7,43 @@ using System.Text;
 using System.Threading.Tasks;
 using VH.Core.Transport;
 using VH.Data.EFCore;
+using VH.Data.Repository;
 using VH.Services.Interfaces;
 
 namespace VH.Services
 {
     public class OrderService : IOrderService
     {
-        protected readonly VHDbmodelContext ctx;
+        private readonly OrderRepository _ordersRepo;
+        private readonly CustomerRepository _customerRepo;
+        private readonly IMapper _mapper;
 
-        public OrderService(VHDbmodelContext ctx)
+        public OrderService(OrderRepository orders, CustomerRepository customers, IMapper mapper)
         {
-            this.ctx = ctx;
+            this._ordersRepo = orders;
+            this._customerRepo = customers;
+            this._mapper = mapper;
         }
 
-        public async Task<OrderDTO> CreateOrder(OrderDTO order)
-        {
-            RentableItem a = new RentableItem();
-            ctx.RentableItem.Add(a);
-            await ctx.SaveChangesAsync();
-
-            var newOrder = new Order()
-            {
-                CustomerId = 1
-            };
-            ctx.Order.Add(newOrder);
-            await ctx.SaveChangesAsync();
-            return new OrderDTO();
-        }
 
         public async Task<IEnumerable<OrderDTO>> ListOrders()
         {
-            return (await ctx.Order.ToListAsync()).Select(x => new OrderDTO() { Id = x.Id });
+            var orders = await _ordersRepo.GetAll();
+            return orders.Select(x => _mapper.Map<OrderDTO>(x));
         }
 
-        public (bool, string) ReserveItem(DateTimeOffset from, DateTimeOffset to)
+        public async Task<(bool, OrderDTO, string)> CreateOrder(OrderDTO order)
         {
             throw new NotImplementedException();
         }
 
-        public Task<OrderDTO> UpdateOrder(OrderDTO order)
+        public async Task<OrderDTO> GetOrder(int id)
         {
-            throw new NotImplementedException();
+            var order = await _ordersRepo.Get(id);
+            return _mapper.Map<OrderDTO>(order);
         }
 
-        Task<OrderDTO> IOrderService.SingleOrder()
+        public async Task<(bool, OrderDTO, string)> UpdateOrder(OrderDTO order)
         {
             throw new NotImplementedException();
         }

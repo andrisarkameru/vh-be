@@ -13,17 +13,17 @@ namespace VH.DataService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class HireController : ControllerBase
+    public class OrderController : ControllerBase
     {
-        private readonly ILogger<HireController> _logger;
+        private readonly ILogger<OrderController> _logger;
         private readonly IConfiguration _config;
         private readonly ICurrencyService _currencyService;
         private readonly IOrderService _orderService;
 
 
-        public HireController(
-            ILogger<HireController> logger, 
-            IConfiguration config, 
+        public OrderController(
+            ILogger<OrderController> logger,
+            IConfiguration config,
             ICurrencyService currencyService,
             IOrderService orderService)
         {
@@ -34,16 +34,34 @@ namespace VH.DataService.Controllers
 
         }
 
-
+        // GET: api/[controller]
         [HttpGet]
-        //[Route("/")]
         public async Task<IEnumerable<OrderDTO>> Get()
         {
-            await _orderService.CreateOrder(new OrderDTO());
-            var result =  await _orderService.ListOrders();
-            return result;
-
+            return await _orderService.ListOrders();
         }
-        
+
+        //Get 
+        [HttpGet]
+        public async Task<IEnumerable<OrderDTO>> Get(int id)
+        {
+            return await _orderService.ListOrders();
+        }
+
+        //Book an order
+
+        [HttpPost]
+        public async Task<OrderDTO> CreateOrder([FromBody] OrderDTO order)
+        {
+            var orderCreation = await _orderService.CreateOrder(order);
+            if (orderCreation.Item1 == true)
+            {
+                 
+            } else
+            {
+
+            }
+        }
     }
+
 }

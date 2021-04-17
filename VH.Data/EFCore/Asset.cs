@@ -4,14 +4,18 @@ using System.Collections.Generic;
 
 namespace VH.Data.EFCore
 {
-    public partial class RentableItem
+    public partial class Asset
     {
-        public RentableItem()
+        public Asset()
         {
             Order = new HashSet<Order>();
         }
 
         public int Id { get; set; }
+        public string Type { get; set; }
+        public string Identification { get; set; }
+        public decimal BasePrice { get; set; }
+        public string Properties { get; set; }
 
         public virtual ICollection<Order> Order { get; set; }
     }

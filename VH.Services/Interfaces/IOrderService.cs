@@ -8,13 +8,10 @@ namespace VH.Services.Interfaces
 {
     public interface IOrderService
     {
-        (bool, string) ReserveItem(DateTimeOffset from, DateTimeOffset to);
+        Task<OrderDTO> GetOrder(int id);
         Task<IEnumerable<OrderDTO>> ListOrders();
-        Task<OrderDTO> SingleOrder();
-
-        Task<OrderDTO> CreateOrder(OrderDTO order);
-        Task<OrderDTO> UpdateOrder(OrderDTO order);
-        
+        Task<(bool, OrderDTO, string)> CreateOrder(OrderDTO order);
+        Task<(bool, OrderDTO, string)> UpdateOrder(OrderDTO order);
         
     }
 }

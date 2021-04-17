@@ -16,17 +16,33 @@ namespace VH.Data.EFCore
         {
         }
 
+        public virtual DbSet<Asset> Asset { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<Location> Location { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Payment> Payment { get; set; }
-        public virtual DbSet<RentableItem> RentableItem { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Asset>(entity =>
+            {
+                entity.Property(e => e.BasePrice).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.Identification)
+                    .IsRequired()
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Type)
+                    .IsRequired()
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Customer>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.HasIndex(e => e.Email)
+                    .HasName("i1");
 
                 entity.Property(e => e.Adress).HasMaxLength(256);
 
@@ -42,8 +58,6 @@ namespace VH.Data.EFCore
 
             modelBuilder.Entity<Location>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Adress)
                     .IsRequired()
                     .HasMaxLength(1024);
@@ -55,11 +69,15 @@ namespace VH.Data.EFCore
 
             modelBuilder.Entity<Order>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Status)
                     .IsRequired()
                     .HasMaxLength(32);
+
+                entity.HasOne(d => d.Asset)
+                    .WithMany(p => p.Order)
+                    .HasForeignKey(d => d.AssetId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Order_ToAssetItem");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Order)
@@ -72,18 +90,10 @@ namespace VH.Data.EFCore
                     .HasForeignKey(d => d.LocationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Order_ToLocation");
-
-                entity.HasOne(d => d.RentableItem)
-                    .WithMany(p => p.Order)
-                    .HasForeignKey(d => d.RentableItemId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Order_ToRentableItem");
             });
 
             modelBuilder.Entity<Payment>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.PaidAmmount).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.PaidCurrency)
@@ -102,11 +112,6 @@ namespace VH.Data.EFCore
                     .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Paymet_ToOrder");
-            });
-
-            modelBuilder.Entity<RentableItem>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
             OnModelCreatingPartial(modelBuilder);

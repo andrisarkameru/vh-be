@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using VH.Currency;
 using VH.Data;
 using VH.Data.EFCore;
+using VH.Data.Repository;
 using VH.Services;
 using VH.Services.Interfaces;
 
@@ -39,9 +41,22 @@ namespace VH.DataService
                 BaseAddress = endpoint,
             };
             services.AddTransient<ICurrencyService>(s => new CurrencyService(httpClient, Configuration[Const.CurrencyApiKey]));
+
+            //EF Repositories:
+            services.AddScoped<OrderRepository>();
+            services.AddScoped<CustomerRepository>();
+            services.AddScoped<LocationRepository>();
+            services.AddScoped<AssetRepository>();
+            services.AddScoped<PaymentRepository>();
+
+            //Logic services:
             services.AddScoped<IOrderService, OrderService>();
+            //services.AddScoped<IAssetService, AssetService>();
+            //services.AddScoped<IPaymentService, PaymentService>();
 
-
+            //Add automapper
+            services.AddAutoMapper(typeof(AutoMapping).Assembly);
+            //Other
             services.AddDbContext<VHDbmodelContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                 );
@@ -50,7 +65,7 @@ namespace VH.DataService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMapper mapper)
         {
             if (env.IsDevelopment())
             {
@@ -75,6 +90,10 @@ namespace VH.DataService
             {
                 endpoints.MapControllers();
             });
+
+            //Check automapper validity
+            mapper.ConfigurationProvider.AssertConfigurationIsValid();
+
         }
     }
 }
