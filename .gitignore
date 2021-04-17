@@ -9,3 +9,10 @@ obj
 /.vs/VacationHire
 /VH.DBModel/VH.DBModel.jfm
 /VH.DBModel/VH.DBModel.dbmdl
+/VH.DataService/Properties/serviceDependencies.vh-be - Web Deploy.json.user
+/VH.DataService/Properties/serviceDependencies.vh-be - Web Deploy.json
+/VH.DataService/Properties/ServiceDependencies/vh-be - Web Deploy/profile.arm.json
+/VH.DataService/Properties/ServiceDependencies/vh-be - Web Deploy
+/VH.DataService/Properties/PublishProfiles/vh-be - Web Deploy.pubxml.user
+/VH.DataService/Properties/PublishProfiles/vh-be - Web Deploy.pubxml
+/VH.DataService/Properties/PublishProfiles

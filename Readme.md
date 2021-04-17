@@ -28,7 +28,5 @@ Items that are left out of scope and short comment about them:
 ### Authentication
 Authentication for API and client can be done in one of many ways, but more of web-friendly approach would be of 
 
-### Caching of currency service responses
-In real world high request volume scenario live currency exchange rate does not change that often and should be cached
-
-
+### Caching of currency service responses for performance and resilience
+In real world high request volume scenario live currency exchange rate does not change that often and should be cached as well as to save on request ammount and to create a resiliancy path if external API provider is down.

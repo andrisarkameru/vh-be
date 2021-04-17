@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using VH.Core.Transport;
 using VH.Currency;
-using VH.Data.EFCore;
+using VH.Services.Interfaces;
 
 namespace VH.DataService.Controllers
 {
@@ -16,27 +17,31 @@ namespace VH.DataService.Controllers
     {
         private readonly ILogger<HireController> _logger;
         private readonly IConfiguration _config;
-        private ICurrencyService _currencyService;
+        private readonly ICurrencyService _currencyService;
+        private readonly IOrderService _orderService;
 
-        public HireController(ILogger<HireController> logger, IConfiguration config, ICurrencyService currencyService)
+
+        public HireController(
+            ILogger<HireController> logger, 
+            IConfiguration config, 
+            ICurrencyService currencyService,
+            IOrderService orderService)
         {
             _logger = logger;
             _config = config;
             _currencyService = currencyService;
+            _orderService = orderService;
 
         }
 
 
         [HttpGet]
-        [Route("/")]
-        public async Task<string> Get()
+        //[Route("/")]
+        public async Task<IEnumerable<OrderDTO>> Get()
         {
-            //var result = await _currencyService.Convert(4, "EUR", "USD");
-            //return @$"
-            //    {this._config["CurrencyApiKey"]}
-            //    {result}
-            //    {this._config["CurrencyBaseUrl"]}";
-            return "AAA";
+            await _orderService.CreateOrder(new OrderDTO());
+            var result =  await _orderService.ListOrders();
+            return result;
 
         }
         

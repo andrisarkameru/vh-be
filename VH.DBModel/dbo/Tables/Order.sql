@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Order] (
-    [Id]         INT                NOT NULL,
+    [Id]         INT     PRIMARY KEY IDENTITY            NOT NULL,
     [Status]    Nvarchar(32) NOT NULL,
     [From]       DATETIMEOFFSET (7) NOT NULL,
     [To]         DATETIMEOFFSET (7) NOT NULL,
@@ -9,7 +9,6 @@
     [StatusBefore] nvarchar(max),
     [StatusAfter] nvarchar(max),
 
-    PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Order_ToCustomer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer] ([Id]),
     CONSTRAINT [FK_Order_ToLocation] FOREIGN KEY ([LocationId]) REFERENCES [dbo].[Location] ([Id]),
     CONSTRAINT [FK_Order_ToRentableItem] FOREIGN KEY ([RentableItemId]) REFERENCES [dbo].[RentableItem] ([Id]),

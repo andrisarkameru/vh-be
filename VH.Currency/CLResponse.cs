@@ -14,13 +14,4 @@ namespace VH.Currency
         public Dictionary<string,decimal> quotes { get; set; }
     }
 
-    //public class Quotes
-    //{
-    //    public float USDAUD { get; set; }
-    //    public float USDEUR { get; set; }
-    //    public float USDGBP { get; set; }
-    //    public float USDPLN { get; set; }
-    //}
-
-
 }
