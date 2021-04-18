@@ -33,7 +33,7 @@ GET: `/api/order/5 ` - get specific order
 GET: `/api/asset`  - list all assets
 POST: `/api/order/`
 
-
+GET: `/api/poc-showcase/currencyservice` - Showcase of external api usage for currency service
 
 ## Creating an order sample payload
 

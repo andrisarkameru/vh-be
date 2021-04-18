@@ -104,6 +104,13 @@ namespace VH.DataService.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("/api/poc-showcase/currencyservice")]
+        public async Task<ActionResult<decimal>> CheckCurrency(string from, string to, decimal ammount)
+        {
+            return Ok(await _currencyService.Convert(ammount, from, to));
+        }
+
 
 
     }
