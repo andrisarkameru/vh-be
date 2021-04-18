@@ -21,10 +21,19 @@ namespace VH.Data.Repository
         {
             var orders = await context.Order.Where(x => x.AssetId == assetId &&
                                 (from <= x.From && to >= x.From || from >= x.From && from < x.To ))
-                                
-
                                 .ToListAsync();
             return orders;
+        }
+        public override async Task<Order> Get(int id)
+        {
+            return await context.Order
+                .Include(x => x.Asset)
+                .Include(x => x.Customer)
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+        public override async Task<List<Order>> GetAll()
+        {
+            return await context.Order.Include(x=>x.Asset).Include(x=>x.Customer).ToListAsync();
         }
     }
 }

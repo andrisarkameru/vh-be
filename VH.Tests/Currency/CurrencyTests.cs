@@ -59,13 +59,13 @@ namespace VH.Tests
         {
             decimal rateEurUSD = 4;
             decimal ammount = 10;
-            var currencyResponse = new CLResponse() { quotes = new Dictionary<string, decimal>() { { "EURUSD", 4 } } };
+            var currencyResponse = new CLResponse() { quotes = new Dictionary<string, decimal>() { { "EURUSD", rateEurUSD } } };
 
             var mockHttp = CreateMockHttp(currencyResponse);
 
             service = new CurrencyService(mockHttp, serviceApiKeyMock);
 
-            Func<Task> act = async () => { await service.Convert(10, "USD", "Z5"); };
+            Func<Task> act = async () => { await service.Convert(ammount, "USD", "Z5"); };
             act.Should().Throw<Exception>();
         }
 
