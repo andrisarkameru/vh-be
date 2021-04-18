@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using VH.Core;
 using VH.Data.EFCore;
 
 namespace VH.Tests
@@ -11,6 +12,7 @@ namespace VH.Tests
     public class ServiceTestBase
     {
         internal DbContextOptions<VHDbmodelContext> _options;
+        internal VHDbmodelContext _ctx;
         internal IMapper _mapper;
 
         [SetUp]
@@ -24,10 +26,25 @@ namespace VH.Tests
             _options = new DbContextOptionsBuilder<VHDbmodelContext>()
             .UseInMemoryDatabase(databaseName: "vhdb")
             .Options;
+
+            //Reset DB state between tests;
+            _ctx = new VHDbmodelContext(_options);
+            //using (var ctx = new VHDbmodelContext(_options))
+            //{
+                _ctx.Database.EnsureDeleted();
+                _ctx.Database.EnsureCreated();
+            //}
+
         }
         public void SeedTestLocations(VHDbmodelContext ctx)
         {
-
+            ctx.Location.Add(new Location()
+            {
+                Id = 1,
+                Name = "Vacation Hire HQ",
+                Adress = "Vacation way 1, AZ"
+            });
+            ctx.SaveChanges();
         }
         public void SeedTestOrders(VHDbmodelContext ctx)
         {
@@ -36,7 +53,9 @@ namespace VH.Tests
                     {
                         AssetId = 1,
                         CustomerId = 1,
-                        LocationId = 1,
+                        From = DateTimeOffset.Parse("2021-01-01"),
+                        To = DateTimeOffset.Parse("2021-12-01"),
+                        Status = OrderStatus.Active,                        
                     });
 
             ctx.SaveChanges();

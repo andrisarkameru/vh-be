@@ -12,35 +12,29 @@ using VH.Services.Interfaces;
 namespace VH.DataService.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/api/[controller]")]
     public class AssetController : ControllerBase
     {
         private readonly ILogger<AssetController> _logger;
         private readonly IConfiguration _config;
-        private readonly ICurrencyService _currencyService;
-        private readonly IOrderService _orderService;
+        private readonly IAssetService _assetService;
 
 
         public AssetController(
             ILogger<AssetController> logger, 
-            IConfiguration config, 
-            ICurrencyService currencyService,
-            IOrderService orderService)
+            IAssetService assetService)
         {
             _logger = logger;
-            _config = config;
-            _currencyService = currencyService;
-            _orderService = orderService;
-
+            _assetService = assetService;
         }
 
 
         [HttpGet]
         //[Route("/")]
-        public async Task<IEnumerable<OrderDTO>> Get()
+        public async Task<IEnumerable<AssetDTO>> Get()
         {
-            await _orderService.CreateOrder(new OrderDTO());
-            var result =  await _orderService.ListOrders();
+            var result = await _assetService.ListAssets();
+            
             return result;
 
         }

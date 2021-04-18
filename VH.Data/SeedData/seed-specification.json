@@ -1,0 +1,33 @@
+﻿//https://www.json-generator.com/
+
+
+[
+  //Customer
+  "{{repeat(15, 15)}}",
+  {
+
+    "id": "{{index()}}",
+    "name": "{{firstName()}} {{surname()}}",
+    "email": "{{email()}}",
+    "address": "{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}",
+    "age": "{{integer(26, 75)}}"
+  },
+
+
+
+  //Asset
+
+  {
+
+    "id": "{{index()}}",
+    "type": "MotorVehicle",
+    "identification": "{{random(\"A\",\"B\",\"C\",\"D\",\"Z\",\"X\")}}{{random(\"A\",\"B\",\"C\",\"D\",\"Z\",\"X\")}}-{{integer(1111, 9999)}}",
+    "baseprice": "{{integer(25, 652)}}",
+    "properties": {
+      "doors": "{{random(3,4,5)}}",
+      "transmission": "{{random(\"manual\", \"automatic\")}}",
+      "airconditioning": "{{random( true, false)}}"
+    }
+  }
+]
+

@@ -12,7 +12,7 @@ using VH.Services.Interfaces;
 namespace VH.DataService.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/api/[controller]")]
     public class OrderController : ControllerBase
     {
         private readonly ILogger<OrderController> _logger;
@@ -36,6 +36,7 @@ namespace VH.DataService.Controllers
 
         // GET: api/[controller]
         [HttpGet]
+        [Route("/api/[controller]/orders/")]
         public async Task<IEnumerable<OrderDTO>> Get()
         {
             return await _orderService.ListOrders();
@@ -43,9 +44,10 @@ namespace VH.DataService.Controllers
 
         //Get 
         [HttpGet]
-        public async Task<IEnumerable<OrderDTO>> Get(int id)
+        [Route("/api/[controller]/orders/{id:int}")]
+        public async Task<OrderDTO> Get(int id)
         {
-            return await _orderService.ListOrders();
+            return await _orderService.GetOrder(id);
         }
 
         //Book an order
@@ -61,6 +63,8 @@ namespace VH.DataService.Controllers
             {
 
             }
+            throw new NotImplementedException();
+
         }
     }
 

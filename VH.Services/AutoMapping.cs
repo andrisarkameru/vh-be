@@ -9,7 +9,7 @@ public class AutoMapping : Profile
     {
         CreateMap<Customer, CustomerDTO>().ReverseMap();
         CreateMap<Order, OrderDTO>().ReverseMap();
-        CreateMap<Location, LocationDTO>().ReverseMap();
+        //CreateMap<Location, LocationDTO>().ReverseMap();
         CreateMap<Payment, PaymentDTO>().ReverseMap();
         CreateMap<Asset, AssetDTO>().ReverseMap();
     }

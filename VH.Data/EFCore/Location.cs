@@ -6,15 +6,8 @@ namespace VH.Data.EFCore
 {
     public partial class Location
     {
-        public Location()
-        {
-            Order = new HashSet<Order>();
-        }
-
         public int Id { get; set; }
         public string Name { get; set; }
         public string Adress { get; set; }
-
-        public virtual ICollection<Order> Order { get; set; }
     }
 }

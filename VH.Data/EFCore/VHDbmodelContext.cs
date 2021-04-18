@@ -84,12 +84,6 @@ namespace VH.Data.EFCore
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Order_ToCustomer");
-
-                entity.HasOne(d => d.Location)
-                    .WithMany(p => p.Order)
-                    .HasForeignKey(d => d.LocationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Order_ToLocation");
             });
 
             modelBuilder.Entity<Payment>(entity =>

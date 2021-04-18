@@ -16,15 +16,12 @@ namespace VH.Data.EFCore
         public DateTimeOffset From { get; set; }
         public DateTimeOffset To { get; set; }
         public int CustomerId { get; set; }
-        public int LocationId { get; set; }
         public int AssetId { get; set; }
         public string StatusBefore { get; set; }
         public string StatusAfter { get; set; }
-        public bool? Deleted { get; set; }
 
         public virtual Asset Asset { get; set; }
         public virtual Customer Customer { get; set; }
-        public virtual Location Location { get; set; }
         public virtual ICollection<Payment> Payment { get; set; }
     }
 }

@@ -1,0 +1,77 @@
+﻿[
+  {
+    "type": "MotorVehicle",
+    "identification": "CB-6418",
+    "baseprice": 30
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "AA-2436",
+    "baseprice": 421
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "ZZ-7961",
+    "baseprice": 303
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "AX-8036",
+    "baseprice": 160
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "CC-8303",
+    "baseprice": 124
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "CC-5227",
+    "baseprice": 543
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "CD-5517",
+    "baseprice": 583
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "ZC-8117",
+    "baseprice": 107
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "XX-9107",
+    "baseprice": 196
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "XB-6019",
+    "baseprice": 501
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "BD-8994",
+    "baseprice": 266
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "DX-1118",
+    "baseprice": 190
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "ZD-6482",
+    "baseprice": 209
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "CC-6548",
+    "baseprice": 190
+  },
+  {
+    "type": "MotorVehicle",
+    "identification": "BZ-1885",
+    "baseprice": 281
+  }
+]

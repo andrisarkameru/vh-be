@@ -19,6 +19,7 @@ namespace VH.Data.Repository
 
         public Task<Customer> GetUserByEmail(string email)
         {
+            if (email == null) return null;
             var custumers = context.Customer.Where(x => x.Email.ToLower() == email.ToLower());
             return custumers.FirstOrDefaultAsync();
         }

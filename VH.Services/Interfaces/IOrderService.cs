@@ -10,8 +10,9 @@ namespace VH.Services.Interfaces
     {
         Task<OrderDTO> GetOrder(int id);
         Task<IEnumerable<OrderDTO>> ListOrders();
-        Task<bool> CheckAvailability(AssetDTO asset);
+        Task<bool> CheckAvailability(OrderDTO asset);
         Task<(bool, OrderDTO, string)> CreateOrder(OrderDTO order);
+        Task<bool> DeleteOrder(OrderDTO order);
         Task<(bool, OrderDTO, string)> UpdateOrder(OrderDTO order);
     }
 }

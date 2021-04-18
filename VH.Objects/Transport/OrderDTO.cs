@@ -16,7 +16,6 @@ namespace VH.Core.Transport
         public CustomerDTO Customer { get; set; }
         
         
-        public virtual LocationDTO Location { get; set; }
         public virtual AssetDTO Asset { get; set; }
         public virtual List<PaymentDTO> Payment { get; set; }
     }

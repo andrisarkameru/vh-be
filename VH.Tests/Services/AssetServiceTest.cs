@@ -16,48 +16,40 @@ namespace VH.Tests
 {
     public class AssetServiceTest : ServiceTestBase
     {
+        private AssetRepository repo;
+        private AssetService service;
+
         //Mock<AssetSer> assetServiceMock;
         [SetUp]
         public void Setup()
         {
             //Seed test data
-            using (var ctx = new VHDbmodelContext(_options))
-            {
-                base.SeedTestAssets(ctx);
-            }
+            base.SeedTestAssets(_ctx);
+            repo = new AssetRepository(_ctx);
+            service = new AssetService(repo, _mapper);
+
 
         }
 
         [Test]
         public async Task ShoutReturnAll()
         {
-            using (var ctx = new VHDbmodelContext(_options))
-            {
-                AssetRepository repo = new AssetRepository(ctx);
-                var assetsFromRepo = await repo.GetAll();
+            var assetsFromRepo = await repo.GetAll();
 
-                assetsFromRepo.Should().HaveCount(2);
+            assetsFromRepo.Should().HaveCount(2);
 
-                var expectedCollection = new List<Asset>()
+            var expectedCollection = new List<Asset>()
                 {
                     new Asset(){ Id = 1, Type = "MotorVehicle", BasePrice = 66, Identification = "VH1233"},
                     new Asset(){  Id = 2,Type = "MotorVehicle",BasePrice = 99,Identification = "MTZ-2231",}
                 };
-                assetsFromRepo.Should().BeEquivalentTo(expectedCollection);
-            }
+            assetsFromRepo.Should().BeEquivalentTo(expectedCollection);
         }
         [Test]
         public async Task ShouldListAssets()
         {
-            using (var ctx = new VHDbmodelContext(_options))
-            {
-                AssetRepository repo = new AssetRepository(ctx);
-                AssetService service = new AssetService(repo, _mapper);
-                var assetsFromRepo = repo.GetAll();
-
-                var serviceAssets = await service.ListAssets();
-
-            }
+            var assetsFromRepo = repo.GetAll();
+            var serviceAssets = await service.ListAssets();
         }
     }
 }

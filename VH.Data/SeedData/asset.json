@@ -1,0 +1,157 @@
+﻿
+  [    
+    {
+      "id": 1,
+      "type": "MotorVehicle",
+      "identification": "XB-7111",
+      "baseprice": 108,
+      "properties": {
+        "doors": 4,
+        "transmission": "automatic",
+        "airconditioning": false
+      }
+    },
+    {
+      "id": 2,
+      "type": "MotorVehicle",
+      "identification": "XX-9448",
+      "baseprice": 44,
+      "properties": {
+        "doors": 3,
+        "transmission": "manual",
+        "airconditioning": false
+      }
+    },
+    {
+      "id": 3,
+      "type": "MotorVehicle",
+      "identification": "XD-2221",
+      "baseprice": 116,
+      "properties": {
+        "doors": 5,
+        "transmission": "automatic",
+        "airconditioning": false
+      }
+    },
+    {
+      "id": 4,
+      "type": "MotorVehicle",
+      "identification": "CZ-7087",
+      "baseprice": 168,
+      "properties": {
+        "doors": 4,
+        "transmission": "manual",
+        "airconditioning": true
+      }
+    },
+    {
+      "id": 5,
+      "type": "MotorVehicle",
+      "identification": "XZ-8237",
+      "baseprice": 327,
+      "properties": {
+        "doors": 4,
+        "transmission": "automatic",
+        "airconditioning": true
+      }
+    },
+    {
+      "id": 6,
+      "type": "MotorVehicle",
+      "identification": "XB-4707",
+      "baseprice": 485,
+      "properties": {
+        "doors": 4,
+        "transmission": "manual",
+        "airconditioning": false
+      }
+    },
+    {
+      "id": 7,
+      "type": "MotorVehicle",
+      "identification": "DD-7515",
+      "baseprice": 312,
+      "properties": {
+        "doors": 4,
+        "transmission": "manual",
+        "airconditioning": true
+      }
+    },
+    {
+      "id": 8,
+      "type": "MotorVehicle",
+      "identification": "XX-7142",
+      "baseprice": 488,
+      "properties": {
+        "doors": 3,
+        "transmission": "manual",
+        "airconditioning": false
+      }
+    },
+    {
+      "id": 9,
+      "type": "MotorVehicle",
+      "identification": "XD-3482",
+      "baseprice": 102,
+      "properties": {
+        "doors": 5,
+        "transmission": "manual",
+        "airconditioning": false
+      }
+    },
+    {
+      "id": 10,
+      "type": "MotorVehicle",
+      "identification": "ZB-6633",
+      "baseprice": 364,
+      "properties": {
+        "doors": 5,
+        "transmission": "manual",
+        "airconditioning": false
+      }
+    },
+    {
+      "id": 11,
+      "type": "MotorVehicle",
+      "identification": "CX-3780",
+      "baseprice": 342,
+      "properties": {
+        "doors": 4,
+        "transmission": "manual",
+        "airconditioning": true
+      }
+    },
+    {
+      "id": 12,
+      "type": "MotorVehicle",
+      "identification": "CZ-8477",
+      "baseprice": 502,
+      "properties": {
+        "doors": 4,
+        "transmission": "manual",
+        "airconditioning": true
+      }
+    },
+    {
+      "id": 13,
+      "type": "MotorVehicle",
+      "identification": "ZA-5674",
+      "baseprice": 191,
+      "properties": {
+        "doors": 3,
+        "transmission": "manual",
+        "airconditioning": false
+      }
+    },
+    {
+      "id": 14,
+      "type": "MotorVehicle",
+      "identification": "CB-6666",
+      "baseprice": 506,
+      "properties": {
+        "doors": 5,
+        "transmission": "automatic",
+        "airconditioning": true
+      }
+    }
+  ]

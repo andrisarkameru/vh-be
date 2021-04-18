@@ -17,10 +17,12 @@ namespace VH.Data.Repository
             this.context = context;
         }
 
-        public Task<List<Order>> GetAssetOrdersByDate(int assetId, DateTimeOffset from, DateTimeOffset to)
+        public async Task<List<Order>> GetAssetOrdersByDate(int assetId, DateTimeOffset from, DateTimeOffset to)
         {
-            var orders = context.Order.Where(x => x.AssetId == assetId &&
-                                (x.From <= from && x.To <= to || x.From >= from && x.To >= to))
+            var orders = await context.Order.Where(x => x.AssetId == assetId &&
+                                (from <= x.From && to >= x.From || from >= x.From && from < x.To ))
+                                
+
                                 .ToListAsync();
             return orders;
         }
