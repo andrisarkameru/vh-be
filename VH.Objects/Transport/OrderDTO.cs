@@ -10,8 +10,6 @@ namespace VH.Core.Transport
         public string Status { get; set; }
         public DateTimeOffset From { get; set; }
         public DateTimeOffset To { get; set; }
-        public int LocationId { get; set; }
-        public int RentableItemId { get; set; }
         public string StatusBefore { get; set; }
         public string StatusAfter { get; set; }
 
@@ -19,7 +17,7 @@ namespace VH.Core.Transport
         
         
         public virtual LocationDTO Location { get; set; }
-        public virtual AssetDTO RentableItem { get; set; }
+        public virtual AssetDTO Asset { get; set; }
         public virtual List<PaymentDTO> Payment { get; set; }
     }
 }

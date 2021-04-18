@@ -11,7 +11,7 @@ using System.Threading;
 using Newtonsoft.Json;
 using FluentAssertions;
 
-namespace VH.Tests.Currency
+namespace VH.Tests
 {
     public class CurrencyTests
     {

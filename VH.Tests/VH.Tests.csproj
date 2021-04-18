@@ -7,7 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataService\**" />
+    <Compile Remove="Data\**" />
+    <EmbeddedResource Remove="DataService\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="DataService\**" />
+    <None Remove="Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.5" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
@@ -15,12 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataService\" />
-    <Folder Include="Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\VH.Currency\VH.Currency.csproj" />
+    <ProjectReference Include="..\VH.Services\VH.Services.csproj" />
   </ItemGroup>
 
 </Project>

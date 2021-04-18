@@ -8,6 +8,6 @@ namespace VH.Services.Interfaces
 {
     public interface IAssetService
     {
-        Task<IEnumerable<AssetDTO>> ListAssets();        
+        Task<IEnumerable<AssetDTO>> ListAssets();                
     }
 }
