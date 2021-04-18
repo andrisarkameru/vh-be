@@ -19,6 +19,7 @@ using VH.Data.EFCore;
 using VH.Data.Repository;
 using VH.Services;
 using VH.Services.Interfaces;
+using VH.Services.Services;
 
 namespace VH.DataService
 {
@@ -51,8 +52,8 @@ namespace VH.DataService
 
             //Logic services:
             services.AddScoped<IOrderService, OrderService>();
-            //services.AddScoped<IAssetService, AssetService>();
-            //services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IAssetService, AssetService>();
+            services.AddScoped<IPaymentService, PaymentService>();
 
             //Add automapper
             services.AddAutoMapper(typeof(AutoMapping).Assembly);

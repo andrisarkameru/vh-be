@@ -66,7 +66,15 @@ namespace VH.Tests
         [Test]
         public async Task ShouldFailCreatingOrder()
         {
-
+            var order = new OrderDTO()
+            {
+                Asset = new AssetDTO() { Id = 1 },
+                Customer = new CustomerDTO() { Email = "new-user@bb.com", Name = "User1", Age = 66 },
+                From = DateTimeOffset.Parse("2021-06-01"),
+                To = DateTimeOffset.Parse("2022-12-01"),
+            };
+            var response = await service.CreateOrder(order);
+            response.Item1.Should().BeFalse();
         }
     }
 }
