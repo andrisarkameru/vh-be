@@ -58,6 +58,7 @@ namespace VH.DataService.Controllers
         /// </summary>
         /// <param name="order"></param>
         /// <returns>200 and order information, or 400 and error message</returns>
+        [Route("/api/[controller]/createorder")]
         [HttpPost]
         public async Task<ActionResult<OrderDTO>> CreateOrder([FromBody] OrderDTO order)
         {
@@ -81,18 +82,19 @@ namespace VH.DataService.Controllers
         }
 
         [HttpPost]
+        [Route("/api/[controller]/updateorder")]
         public async Task<ActionResult<OrderDTO>> UpdateOrder([FromBody] OrderDTO order)
         {
             try
             {
-                var orderUpdate = await _orderService.UpdateOrder(order);
-                if (orderUpdate.Item1 == true)
+                var orderCreation = await _orderService.UpdateOrder(order);
+                if (orderCreation.Item1 == true)
                 {
-                    return Ok(orderUpdate.Item2);
+                    return Ok(orderCreation.Item2);
                 }
                 else
                 {
-                    return BadRequest(orderUpdate.Item3);
+                    return BadRequest(orderCreation.Item3);
                 }
             }
             catch (ApiException e)
